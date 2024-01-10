@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Valentin Jacques",
+    "slug": "Valentin Jacques",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo-noir.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/logo-noir.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/logo-noir.png",
+        "backgroundColor": "#ffffff"
+      }
+    }
+  }
+}
