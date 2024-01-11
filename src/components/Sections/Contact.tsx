@@ -8,14 +8,12 @@ import Title from "../Typography/Title";
 import RoundedButton from "../Buttons/RoundedButton";
 import RoundedIconButton from "../Buttons/RoundedIconButton";
 import Paragraph from "../Typography/Paragraph";
+import { openLink } from "../../utils/openLink";
 
 export default function Contact() {
   const { width } = useWindowDimensions();
   const shouldResize = width < 700;
 
-  function openLink(url: string) {
-    Linking.openURL(url).catch((e) => console.log("Could not open link" + url));
-  }
 
   return (
     <View style={{ gap: 15, alignItems: "center" }}>

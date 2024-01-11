@@ -1,12 +1,14 @@
 import * as React from "react";
 import { Dimensions, Image, Linking, Pressable, View } from "react-native";
-import { AntDesign, Entypo, EvilIcons } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 
 import Colors from "../../styles/Colors";
 import RoundedIconButton from "../Buttons/RoundedIconButton";
 import layouts from "../../styles/layouts";
 import Paragraph from "../Typography/Paragraph";
 import { AnchorsRef } from "@nandorojo/anchor";
+import { openLink } from "../../utils/openLink";
+import useIsPhone from "../../providers/hooks/useIsPhone";
 
 type Props = {
   anchors: React.RefObject<AnchorsRef>;
@@ -14,6 +16,7 @@ type Props = {
 function Footer({ anchors }: Props) {
   const scrollRefs = ["about", "projects", "services", "contact"];
   const shouldResize = Dimensions.get("window").width < 700;
+  const {isPhone} = useIsPhone()
 
   const onItemPressed = (index: number) => {
     anchors.current?.scrollTo(scrollRefs[index], {
@@ -24,13 +27,15 @@ function Footer({ anchors }: Props) {
   return (
     <View
       style={[
-        layouts.row,
+  
         {
+          flexDirection: isPhone ? "column": "row",
           height: 300,
           width: "100%",
           backgroundColor: Colors.GREY,
           alignItems: "center",
           paddingHorizontal: 20,
+          flexWrap: "wrap",
         },
       ]}
     >
@@ -44,11 +49,18 @@ function Footer({ anchors }: Props) {
         ]}
       >
         <Image
-          style={[{ height: 50, width: 50, resizeMode: "contain" }]}
+          style={[
+            {
+              minHeight: 50,
+              maxHeight: 100,
+              width: "100%",
+              resizeMode: "contain",
+            },
+          ]}
           source={require("../../../assets/images/valentin-jacques-logo.png")}
         />
       </View>
-      <View style={[layouts.center, { flex: 1, gap: 5 }]}>
+      <View style={[layouts.center, { flex: 1,gap: 5 }]}>
         <View>
           {[
             "À propos",
@@ -100,30 +112,22 @@ function Footer({ anchors }: Props) {
           style={[layouts.row, { gap: shouldResize ? 10 : 20, marginTop: 5 }]}
         >
           <RoundedIconButton
-            onPress={() => {}}
+            onPress={() =>
+              openLink(
+                "https://www.instagram.com/vlt_visual?igsh=MXJuZ3Q1MmdtOXN1Yg%3D%3D&utm_source=qr"
+              )
+            }
             size={25}
             backgroundColor={Colors.WHITE}
             icon={<AntDesign name="instagram" size={10} color={Colors.GREY} />}
           />
           <RoundedIconButton
-            onPress={() => {}}
-            size={25}
-            backgroundColor={Colors.WHITE}
-            icon={<AntDesign name="twitter" size={10} color={Colors.GREY} />}
-          />
-          <RoundedIconButton
-            onPress={() => {}}
+            onPress={() =>
+              openLink("https://www.linkedin.com/in/valentin-j-93a056252/")
+            }
             size={25}
             backgroundColor={Colors.WHITE}
             icon={<Entypo name="linkedin" size={10} color={Colors.GREY} />}
-          />
-          <RoundedIconButton
-            onPress={() => {}}
-            size={25}
-            backgroundColor={Colors.WHITE}
-            icon={
-              <EvilIcons name="sc-facebook" size={20} color={Colors.GREY} />
-            }
           />
         </View>
       </View>
